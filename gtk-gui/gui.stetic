@@ -1,0 +1,845 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<stetic-interface>
+  <configuration>
+    <images-root-path>..</images-root-path>
+    <target-gtk-version>2.12</target-gtk-version>
+  </configuration>
+  <import>
+    <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <widget-library name="../bin/Debug/rss_editor.exe" internal="true" />
+  </import>
+  <widget class="Gtk.Window" id="MainWindow" design-size="619 361">
+    <action-group name="Default">
+      <action id="newAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes" />
+        <property name="StockId">gtk-new</property>
+        <signal name="Activated" handler="Create_clicked" />
+      </action>
+      <action id="openAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes" />
+        <property name="StockId">gtk-open</property>
+        <signal name="Activated" handler="Options_clicked" />
+      </action>
+      <action id="dialogInfoAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes" />
+        <property name="StockId">gtk-dialog-info</property>
+        <signal name="Activated" handler="About_clicked" />
+      </action>
+      <action id="quitAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes" />
+        <property name="StockId">gtk-quit</property>
+        <signal name="Activated" handler="Quit_clicked" />
+      </action>
+    </action-group>
+    <property name="MemberName" />
+    <property name="Title" translatable="yes">RSS Editor</property>
+    <property name="Icon">file:./rss.ico</property>
+    <property name="WindowPosition">Center</property>
+    <signal name="DeleteEvent" handler="OnDeleteEvent" />
+    <child>
+      <widget class="Gtk.Fixed" id="fixed1">
+        <property name="MemberName" />
+        <property name="HasWindow">False</property>
+        <child>
+          <widget class="Gtk.Toolbar" id="toolbar1">
+            <property name="MemberName" />
+            <property name="ShowArrow">False</property>
+            <node name="toolbar1" type="Toolbar">
+              <node type="Toolitem" action="newAction" />
+              <node type="Toolitem" action="openAction" />
+              <node type="Toolitem" action="dialogInfoAction" />
+              <node type="Toolitem" action="quitAction" />
+            </node>
+          </widget>
+          <packing>
+            <property name="X">2</property>
+            <property name="Y">4</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Entry" id="tbTitle">
+            <property name="MemberName" />
+            <property name="WidthRequest">450</property>
+            <property name="CanFocus">True</property>
+            <property name="IsEditable">True</property>
+            <property name="InvisibleChar">•</property>
+          </widget>
+          <packing>
+            <property name="X">110</property>
+            <property name="Y">65</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Entry" id="tbLink">
+            <property name="MemberName" />
+            <property name="WidthRequest">450</property>
+            <property name="CanFocus">True</property>
+            <property name="IsEditable">True</property>
+            <property name="InvisibleChar">•</property>
+          </widget>
+          <packing>
+            <property name="X">110</property>
+            <property name="Y">110</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Entry" id="tbDescription">
+            <property name="MemberName" />
+            <property name="WidthRequest">450</property>
+            <property name="CanFocus">True</property>
+            <property name="IsEditable">True</property>
+            <property name="InvisibleChar">•</property>
+          </widget>
+          <packing>
+            <property name="X">110</property>
+            <property name="Y">156</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="label3">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">Description</property>
+          </widget>
+          <packing>
+            <property name="X">22</property>
+            <property name="Y">159</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="label1">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">Title</property>
+          </widget>
+          <packing>
+            <property name="X">70</property>
+            <property name="Y">69</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="label2">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">Link</property>
+          </widget>
+          <packing>
+            <property name="X">72</property>
+            <property name="Y">115</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Entry" id="tbAuthor">
+            <property name="MemberName" />
+            <property name="WidthRequest">450</property>
+            <property name="CanFocus">True</property>
+            <property name="IsEditable">True</property>
+            <property name="InvisibleChar">•</property>
+          </widget>
+          <packing>
+            <property name="X">110</property>
+            <property name="Y">202</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="label4">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">Author</property>
+          </widget>
+          <packing>
+            <property name="X">54</property>
+            <property name="Y">207</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.ComboBox" id="ddCategory">
+            <property name="MemberName" />
+            <property name="WidthRequest">149</property>
+            <property name="IsTextCombo">True</property>
+            <property name="Items" translatable="yes">Notícias
+Novidades
+Artigos
+Publicações
+Eventos
+Entrevistas
+Reviews
+Lançamentos
+Imagens
+Música
+Vídeos
+Sites</property>
+          </widget>
+          <packing>
+            <property name="X">110</property>
+            <property name="Y">249</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="label5">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">Category</property>
+          </widget>
+          <packing>
+            <property name="X">40</property>
+            <property name="Y">256</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Entry" id="tbCategory">
+            <property name="MemberName" />
+            <property name="WidthRequest">293</property>
+            <property name="CanFocus">True</property>
+            <property name="IsEditable">True</property>
+            <property name="InvisibleChar">•</property>
+          </widget>
+          <packing>
+            <property name="X">267</property>
+            <property name="Y">251</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.VSeparator" id="vseparator1">
+            <property name="MemberName" />
+            <property name="HeightRequest">27</property>
+          </widget>
+          <packing>
+            <property name="X">262</property>
+            <property name="Y">301</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Button" id="btPublish">
+            <property name="MemberName" />
+            <property name="WidthRequest">145</property>
+            <property name="CanFocus">True</property>
+            <property name="Type">TextOnly</property>
+            <property name="Label" translatable="yes">Publish!</property>
+            <property name="UseUnderline">True</property>
+            <signal name="Clicked" handler="btPublish_Clicked" />
+          </widget>
+          <packing>
+            <property name="X">109</property>
+            <property name="Y">300</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Button" id="btDelete">
+            <property name="MemberName" />
+            <property name="WidthRequest">290</property>
+            <property name="CanFocus">True</property>
+            <property name="Type">TextOnly</property>
+            <property name="Label" translatable="yes">Delete last publication</property>
+            <property name="UseUnderline">True</property>
+            <signal name="Clicked" handler="btDelete_Clicked" />
+          </widget>
+          <packing>
+            <property name="X">270</property>
+            <property name="Y">300</property>
+          </packing>
+        </child>
+      </widget>
+    </child>
+  </widget>
+  <widget class="Gtk.Window" id="rss_editor.Create" design-size="591 421">
+    <property name="MemberName" />
+    <property name="Title" translatable="yes">Create RSS</property>
+    <property name="WindowPosition">CenterOnParent</property>
+    <child>
+      <widget class="Gtk.Fixed" id="fixed1">
+        <property name="MemberName" />
+        <property name="HasWindow">False</property>
+        <child>
+          <widget class="Gtk.Entry" id="tbTitle">
+            <property name="MemberName" />
+            <property name="WidthRequest">409</property>
+            <property name="CanFocus">True</property>
+            <property name="IsEditable">True</property>
+            <property name="InvisibleChar">•</property>
+          </widget>
+          <packing>
+            <property name="X">121</property>
+            <property name="Y">30</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Entry" id="tbLink">
+            <property name="MemberName" />
+            <property name="WidthRequest">409</property>
+            <property name="CanFocus">True</property>
+            <property name="IsEditable">True</property>
+            <property name="InvisibleChar">•</property>
+          </widget>
+          <packing>
+            <property name="X">121</property>
+            <property name="Y">77</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Entry" id="tbDescription">
+            <property name="MemberName" />
+            <property name="WidthRequest">409</property>
+            <property name="CanFocus">True</property>
+            <property name="IsEditable">True</property>
+            <property name="InvisibleChar">•</property>
+          </widget>
+          <packing>
+            <property name="X">121</property>
+            <property name="Y">123</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="label2">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">Title</property>
+          </widget>
+          <packing>
+            <property name="X">86</property>
+            <property name="Y">36</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="label3">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">Link</property>
+          </widget>
+          <packing>
+            <property name="X">88</property>
+            <property name="Y">81</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="label4">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">Description</property>
+          </widget>
+          <packing>
+            <property name="X">37</property>
+            <property name="Y">128</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Entry" id="tbCopyright">
+            <property name="MemberName" />
+            <property name="WidthRequest">409</property>
+            <property name="CanFocus">True</property>
+            <property name="IsEditable">True</property>
+            <property name="InvisibleChar">•</property>
+          </widget>
+          <packing>
+            <property name="X">121</property>
+            <property name="Y">170</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="label5">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">Copyright</property>
+          </widget>
+          <packing>
+            <property name="X">49</property>
+            <property name="Y">175</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Entry" id="tbImgURL">
+            <property name="MemberName" />
+            <property name="WidthRequest">363</property>
+            <property name="CanFocus">True</property>
+            <property name="IsEditable">True</property>
+            <property name="InvisibleChar">•</property>
+          </widget>
+          <packing>
+            <property name="X">167</property>
+            <property name="Y">219</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Entry" id="tbImgTitle">
+            <property name="MemberName" />
+            <property name="WidthRequest">363</property>
+            <property name="CanFocus">True</property>
+            <property name="IsEditable">True</property>
+            <property name="InvisibleChar">•</property>
+          </widget>
+          <packing>
+            <property name="X">167</property>
+            <property name="Y">266</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="label8">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">Title</property>
+          </widget>
+          <packing>
+            <property name="X">130</property>
+            <property name="Y">270</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="label7">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">URL</property>
+          </widget>
+          <packing>
+            <property name="X">134</property>
+            <property name="Y">225</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="label9">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">Link</property>
+          </widget>
+          <packing>
+            <property name="X">134</property>
+            <property name="Y">320</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Entry" id="tbImgLink">
+            <property name="MemberName" />
+            <property name="WidthRequest">363</property>
+            <property name="CanFocus">True</property>
+            <property name="IsEditable">True</property>
+            <property name="InvisibleChar">•</property>
+          </widget>
+          <packing>
+            <property name="X">167</property>
+            <property name="Y">314</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="label6">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">Imagem</property>
+          </widget>
+          <packing>
+            <property name="X">50</property>
+            <property name="Y">269</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.DrawingArea" id="drawingarea1">
+            <property name="MemberName" />
+          </widget>
+          <packing>
+            <property name="X">104</property>
+            <property name="Y">282</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.VSeparator" id="vseparator1">
+            <property name="MemberName" />
+            <property name="HeightRequest">108</property>
+          </widget>
+          <packing>
+            <property name="X">115</property>
+            <property name="Y">228</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Button" id="btSave">
+            <property name="MemberName" />
+            <property name="CanFocus">True</property>
+            <property name="Type">TextOnly</property>
+            <property name="Label" translatable="yes">Save RSS File</property>
+            <property name="UseUnderline">True</property>
+            <signal name="Clicked" handler="btSave_Clicked" />
+          </widget>
+          <packing>
+            <property name="X">113</property>
+            <property name="Y">363</property>
+          </packing>
+        </child>
+      </widget>
+    </child>
+  </widget>
+  <widget class="Gtk.Dialog" id="rss_editor.warningHttpDialog" design-size="402 136">
+    <property name="MemberName" />
+    <property name="WidthRequest">400</property>
+    <property name="HeightRequest">100</property>
+    <property name="Title" />
+    <property name="WindowPosition">CenterOnParent</property>
+    <property name="Resizable">False</property>
+    <property name="AllowGrow">False</property>
+    <property name="Buttons">1</property>
+    <property name="HelpButton">False</property>
+    <child internal-child="VBox">
+      <widget class="Gtk.VBox" id="dialog1_VBox">
+        <property name="MemberName" />
+        <property name="BorderWidth">2</property>
+        <child>
+          <widget class="Gtk.Label" id="label2">
+            <property name="MemberName" />
+            <property name="HeightRequest">62</property>
+            <property name="LabelProp" translatable="yes">Start URL's and Links with "http://" or "https://"</property>
+          </widget>
+          <packing>
+            <property name="Position">0</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+      </widget>
+    </child>
+    <child internal-child="ActionArea">
+      <widget class="Gtk.HButtonBox" id="dialog1_ActionArea">
+        <property name="MemberName" />
+        <property name="Spacing">10</property>
+        <property name="BorderWidth">5</property>
+        <property name="Size">1</property>
+        <property name="LayoutStyle">End</property>
+        <child>
+          <widget class="Gtk.Button" id="buttonOk">
+            <property name="MemberName" />
+            <property name="CanDefault">True</property>
+            <property name="CanFocus">True</property>
+            <property name="UseStock">True</property>
+            <property name="Type">StockItem</property>
+            <property name="StockId">gtk-ok</property>
+            <property name="ResponseId">-5</property>
+            <signal name="Clicked" handler="buttonOk_Clicked" />
+            <property name="label">gtk-ok</property>
+          </widget>
+          <packing>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+      </widget>
+    </child>
+  </widget>
+  <widget class="Gtk.Dialog" id="rss_editor.warningImgDialog" design-size="402 136">
+    <property name="MemberName" />
+    <property name="WidthRequest">400</property>
+    <property name="HeightRequest">100</property>
+    <property name="Title" />
+    <property name="WindowPosition">CenterOnParent</property>
+    <property name="Resizable">False</property>
+    <property name="AllowGrow">False</property>
+    <property name="Buttons">1</property>
+    <property name="HelpButton">False</property>
+    <child internal-child="VBox">
+      <widget class="Gtk.VBox" id="dialog1_VBox">
+        <property name="MemberName" />
+        <property name="BorderWidth">2</property>
+        <child>
+          <widget class="Gtk.Label" id="label1">
+            <property name="MemberName" />
+            <property name="HeightRequest">62</property>
+            <property name="LabelProp" translatable="yes">Insert an URL of a "JPG" or "PNG" picture!</property>
+          </widget>
+          <packing>
+            <property name="Position">0</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+      </widget>
+    </child>
+    <child internal-child="ActionArea">
+      <widget class="Gtk.HButtonBox" id="dialog1_ActionArea">
+        <property name="MemberName" />
+        <property name="Spacing">10</property>
+        <property name="BorderWidth">5</property>
+        <property name="Size">1</property>
+        <property name="LayoutStyle">End</property>
+        <child>
+          <widget class="Gtk.Button" id="buttonOk">
+            <property name="MemberName" />
+            <property name="CanDefault">True</property>
+            <property name="CanFocus">True</property>
+            <property name="UseStock">True</property>
+            <property name="Type">StockItem</property>
+            <property name="StockId">gtk-ok</property>
+            <property name="ResponseId">-5</property>
+            <signal name="Clicked" handler="buttonOk_Clicked" />
+            <property name="label">gtk-ok</property>
+          </widget>
+          <packing>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+      </widget>
+    </child>
+  </widget>
+  <widget class="Gtk.Dialog" id="rss_editor.warningRssMissingDialog" design-size="400 136">
+    <property name="MemberName" />
+    <property name="WidthRequest">300</property>
+    <property name="HeightRequest">100</property>
+    <property name="Title" />
+    <property name="WindowPosition">CenterOnParent</property>
+    <property name="Resizable">False</property>
+    <property name="AllowGrow">False</property>
+    <property name="Buttons">1</property>
+    <property name="HelpButton">False</property>
+    <child internal-child="VBox">
+      <widget class="Gtk.VBox" id="dialog1_VBox">
+        <property name="MemberName" />
+        <property name="BorderWidth">2</property>
+        <child>
+          <widget class="Gtk.Label" id="label1">
+            <property name="MemberName" />
+            <property name="HeightRequest">62</property>
+            <property name="LabelProp" translatable="yes">Select the RSS File!</property>
+          </widget>
+          <packing>
+            <property name="Position">0</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+      </widget>
+    </child>
+    <child internal-child="ActionArea">
+      <widget class="Gtk.HButtonBox" id="dialog1_ActionArea">
+        <property name="MemberName" />
+        <property name="Spacing">10</property>
+        <property name="BorderWidth">5</property>
+        <property name="Size">1</property>
+        <property name="LayoutStyle">End</property>
+        <child>
+          <widget class="Gtk.Button" id="buttonOk">
+            <property name="MemberName" />
+            <property name="CanDefault">True</property>
+            <property name="CanFocus">True</property>
+            <property name="UseStock">True</property>
+            <property name="Type">StockItem</property>
+            <property name="StockId">gtk-ok</property>
+            <property name="ResponseId">-5</property>
+            <signal name="Clicked" handler="buttonOk_Clicked" />
+            <property name="label">gtk-ok</property>
+          </widget>
+          <packing>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+      </widget>
+    </child>
+  </widget>
+  <widget class="Gtk.Dialog" id="rss_editor.warningDeletePublicationDialog" design-size="402 136">
+    <property name="MemberName" />
+    <property name="WidthRequest">400</property>
+    <property name="HeightRequest">100</property>
+    <property name="Title" />
+    <property name="WindowPosition">CenterOnParent</property>
+    <property name="Resizable">False</property>
+    <property name="AllowGrow">False</property>
+    <property name="Buttons">1</property>
+    <property name="HelpButton">False</property>
+    <child internal-child="VBox">
+      <widget class="Gtk.VBox" id="dialog1_VBox">
+        <property name="MemberName" />
+        <property name="BorderWidth">2</property>
+        <child>
+          <widget class="Gtk.Label" id="label3">
+            <property name="MemberName" />
+            <property name="HeightRequest">62</property>
+            <property name="LabelProp" translatable="yes">It will delete the last publication. Ok?</property>
+          </widget>
+          <packing>
+            <property name="Position">0</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+      </widget>
+    </child>
+    <child internal-child="ActionArea">
+      <widget class="Gtk.HButtonBox" id="dialog1_ActionArea">
+        <property name="MemberName" />
+        <property name="Spacing">10</property>
+        <property name="BorderWidth">5</property>
+        <property name="Size">1</property>
+        <property name="LayoutStyle">End</property>
+        <child>
+          <widget class="Gtk.Button" id="buttonOk">
+            <property name="MemberName" />
+            <property name="CanDefault">True</property>
+            <property name="CanFocus">True</property>
+            <property name="UseStock">True</property>
+            <property name="Type">StockItem</property>
+            <property name="StockId">gtk-ok</property>
+            <property name="ResponseId">-5</property>
+            <signal name="Clicked" handler="buttonOk_Clicked" />
+            <property name="label">gtk-ok</property>
+          </widget>
+          <packing>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+      </widget>
+    </child>
+  </widget>
+  <widget class="Gtk.Dialog" id="rss_editor.successfulCreateDialog" design-size="402 136">
+    <property name="MemberName" />
+    <property name="WidthRequest">400</property>
+    <property name="HeightRequest">100</property>
+    <property name="Title" />
+    <property name="WindowPosition">CenterOnParent</property>
+    <property name="Resizable">False</property>
+    <property name="AllowGrow">False</property>
+    <property name="Buttons">1</property>
+    <property name="HelpButton">False</property>
+    <child internal-child="VBox">
+      <widget class="Gtk.VBox" id="dialog1_VBox">
+        <property name="MemberName" />
+        <property name="BorderWidth">2</property>
+        <child>
+          <widget class="Gtk.Label" id="label4">
+            <property name="MemberName" />
+            <property name="HeightRequest">62</property>
+            <property name="LabelProp" translatable="yes">RSS File successfully created in your home directory!</property>
+          </widget>
+          <packing>
+            <property name="Position">0</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+      </widget>
+    </child>
+    <child internal-child="ActionArea">
+      <widget class="Gtk.HButtonBox" id="dialog1_ActionArea">
+        <property name="MemberName" />
+        <property name="Spacing">10</property>
+        <property name="BorderWidth">5</property>
+        <property name="Size">1</property>
+        <property name="LayoutStyle">End</property>
+        <child>
+          <widget class="Gtk.Button" id="buttonOk">
+            <property name="MemberName" />
+            <property name="CanDefault">True</property>
+            <property name="CanFocus">True</property>
+            <property name="UseStock">True</property>
+            <property name="Type">StockItem</property>
+            <property name="StockId">gtk-ok</property>
+            <property name="ResponseId">-5</property>
+            <signal name="Clicked" handler="buttonOk_Clicked" />
+            <property name="label">gtk-ok</property>
+          </widget>
+          <packing>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+      </widget>
+    </child>
+  </widget>
+  <widget class="Gtk.Dialog" id="rss_editor.successfulPublishDialog" design-size="405 143">
+    <property name="MemberName" />
+    <property name="WindowPosition">CenterOnParent</property>
+    <property name="Buttons">1</property>
+    <property name="HelpButton">False</property>
+    <child internal-child="VBox">
+      <widget class="Gtk.VBox" id="dialog1_VBox">
+        <property name="MemberName" />
+        <property name="WidthRequest">300</property>
+        <property name="HeightRequest">100</property>
+        <property name="BorderWidth">2</property>
+        <child>
+          <widget class="Gtk.Label" id="label1">
+            <property name="MemberName" />
+            <property name="WidthRequest">300</property>
+            <property name="HeightRequest">100</property>
+            <property name="LabelProp" translatable="yes">Successfully published!</property>
+          </widget>
+          <packing>
+            <property name="Position">0</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+      </widget>
+    </child>
+    <child internal-child="ActionArea">
+      <widget class="Gtk.HButtonBox" id="dialog1_ActionArea">
+        <property name="MemberName" />
+        <property name="Spacing">10</property>
+        <property name="BorderWidth">5</property>
+        <property name="Size">1</property>
+        <property name="LayoutStyle">End</property>
+        <child>
+          <widget class="Gtk.Button" id="buttonOk">
+            <property name="MemberName" />
+            <property name="CanDefault">True</property>
+            <property name="CanFocus">True</property>
+            <property name="UseStock">True</property>
+            <property name="Type">StockItem</property>
+            <property name="StockId">gtk-ok</property>
+            <property name="ResponseId">-5</property>
+            <signal name="Clicked" handler="buttonOk_Clicked" />
+            <property name="label">gtk-ok</property>
+          </widget>
+          <packing>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+      </widget>
+    </child>
+  </widget>
+  <widget class="Gtk.Dialog" id="rss_editor.warningNonExistPublicationDialog" design-size="411 148">
+    <property name="MemberName" />
+    <property name="WindowPosition">CenterOnParent</property>
+    <property name="Buttons">1</property>
+    <property name="HelpButton">False</property>
+    <child internal-child="VBox">
+      <widget class="Gtk.VBox" id="dialog1_VBox">
+        <property name="MemberName" />
+        <property name="BorderWidth">2</property>
+        <child>
+          <widget class="Gtk.Label" id="label2">
+            <property name="MemberName" />
+            <property name="WidthRequest">300</property>
+            <property name="HeightRequest">100</property>
+            <property name="LabelProp" translatable="yes">There are no publications!</property>
+          </widget>
+          <packing>
+            <property name="Position">0</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+      </widget>
+    </child>
+    <child internal-child="ActionArea">
+      <widget class="Gtk.HButtonBox" id="dialog1_ActionArea">
+        <property name="MemberName" />
+        <property name="Spacing">10</property>
+        <property name="BorderWidth">5</property>
+        <property name="Size">1</property>
+        <property name="LayoutStyle">End</property>
+        <child>
+          <widget class="Gtk.Button" id="buttonOk">
+            <property name="MemberName" />
+            <property name="CanDefault">True</property>
+            <property name="CanFocus">True</property>
+            <property name="UseStock">True</property>
+            <property name="Type">StockItem</property>
+            <property name="StockId">gtk-ok</property>
+            <property name="ResponseId">-5</property>
+            <signal name="Clicked" handler="buttonOk_Clicked" />
+            <property name="label">gtk-ok</property>
+          </widget>
+          <packing>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+      </widget>
+    </child>
+  </widget>
+</stetic-interface>
